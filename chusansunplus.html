@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>CHUNITHM SUN PLUS Modder</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/dllpatcher.js"></script>
+        <script type="text/javascript">
+            window.addEventListener("load", function () {
+            new PatchContainer([
+                new Patcher("chusanApp.exe", "2.16.00", [
+                    {
+                        name: "禁用閉店鎖定",
+                        tooltip: "停用 ~12-8am 鎖定。 不禁用日本標準時間上午 6:30-7 點之間的維護鎖定",
+                        patches: [
+                            {offset: 0xBB74F3, off: [0x74], on: [0xEB]},
+                        ],
+                    },
+                    {
+                        name: "強制共享音訊模式，系統音訊取樣率必須為48000",
+                        tooltip: "提高相容性，但可能會增加延遲",
+                        patches: [
+                            {offset: 0xED689A, off: [0x01], on: [0x00]},
+                        ],
+                    },
+                    {
+                        name: "強制2通道音訊輸出",
+                        patches: [
+                            {offset: 0xED6971, off: [0x75, 0x3F], on: [0x90, 0x90]},
+                        ],
+                    },
+                    {
+                        name: "停用歌曲選擇倒計時",
+                        patches: [
+                            {offset: 0x9B9B0B, off: [0x74], on: [0xEB]},
+                        ],
+                    },
+                    {
+                        name: "設定最大秒數 999",
+                        patches: [
+                            {offset: 0x843800, off: [0x8B, 0x44, 0x24, 0x04, 0x69, 0xC0, 0xE8, 0x03, 0x00, 0x00], on: [0xB8, 0x58, 0x3E, 0x0F, 0x00, 0x90, 0x90, 0x90, 0x90, 0x90]},
+                        ],
+                    },
+                    {
+                        name: "連機內補丁",
+                        tooltip: "修復嘗試連接機台對機台遊戲時無限同步的問題。",
+                        patches: [
+                            {offset: 0x629263, off: [0x01], on: [0x00]},
+                        ]
+                    },
+                    {
+                        name: "無加密",
+                        tooltip: "解決你的title server",
+                        patches: [
+                            {offset: 0x1D68450, off: [0xD2], on: [0x00]},
+                            {offset: 0x1D68454, off: [0xD2], on: [0x00]},
+                        ]
+                    },
+                    {
+                        name: "無限最大曲目數",
+                        tooltip: "可能有用可能沒用",
+                        patches: [
+                            {offset: 0x6F1D87, off: [0xF0], on: [0xC0]},
+                        ],
+                    },
+                    {
+                        type : "數字",
+                        name : "最大曲數",
+                        offset : 0x397AE1,
+                        size : 4,
+                        min : 3,
+                        max : 12,
+                    },
+                    {
+                        name: "忽略 amdaemon 的一些錯誤",
+                        danger: "可能會緩解一些錯誤，例如錯誤 6401，但也可能在其他地方引起問題。",
+                        patches: [
+                            {offset: 0x37D6CB, off: [0x75], on: [0xEB]},
+                        ],
+                    },
+                    {
+                        name: "CVT 模式",
+                        danger: "檢查你是否60Hz",
+                        patches: [
+                            {offset: 0x1CD04, off: [0x01], on: [0x00]},
+                            {offset: 0x1CD3B, off: [0x01], on: [0x00]},
+
+                            {offset: 0x37B28B, off: [0x75], on: [0xEB]},
+                            {offset: 0x37CBEE, off: [0x84, 0xC0, 0x0F, 0x94, 0xC1], on: [0x90, 0x90, 0x90, 0x90, 0x90]},
+                            {offset: 0xEB9907, off: [0x80], on: [0x00]},
+                        ],
+                    },
+                    {
+                        name: "禁用 1080p 檢查",
+                        danger: "可能有用可能沒用",
+                        patches: [
+                            {offset: 0x1CCBF, off: [0x81, 0xBC, 0x24, 0xB8, 0x02, 0x00, 0x00, 0x80, 0x07, 0x00, 0x00, 0x75, 0x1F, 0x81, 0xBC, 0x24, 0xBC, 0x02, 0x00, 0x00, 0x38, 0x04, 0x00, 0x00, 0x75, 0x12], on: [0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90]},
+                        ],
+                    },
+                    {
+                        name: "繞過LED檢查強制GOOD",
+                        danger: "可能有用可能沒用",
+                        patches: [
+                            {offset: 0x98BBAA, off: [0x01], on: [0x00]},
+                            {offset: 0x98BBAF, off: [0x00], on: [0x01]},
+                        ]
+                    },
+                    {
+                        name: "強制120hz檢查",
+                        danger: "[DEPRECATED] Check to make the 120hz check pass always (don't use this with the CVT Mode patch)",
+                        patches: [
+                            {offset: 0x1CCB1, off: [0x85, 0xC0], on: [0xEB, 0x30]},
+                        ],
+                    },
+                ])
+                ]);
+                new PatchContainer([
+                new Patcher("amdaemon.exe", "2.16.00", [
+                    {
+                        name: "將ERROR 6401 移除替換",
+                        danger: "可能有用可能沒用",
+                        patches: [
+                            {offset: 0x2220F6, off: [0x01, 0x19], on: [0x00, 0x00]},
+                            {offset: 0x22229E, off: [0x01, 0x19], on: [0x00, 0x00]},
+                            {offset: 0x222C87, off: [0x01, 0x19], on: [0x00, 0x00]},
+                        ],
+                    },
+                ])
+                ]);
+            });
+        </script>
+    </head>
+    <body>
+        <h1>CHUNITHM SUN PLUS Modder</h1>
+    </body>
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>遊戲補丁工具</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script>
+            window.addEventListener('DOMContentLoaded', function() {
+                // implement radio-style behaviour for categories
+                for(const input of document.querySelectorAll(".sectionToggle")) {
+                    input.onclick = () => {
+                        for(const el of document.querySelectorAll(".sectionToggle")) {
+                            if(el != input) el.checked = false;
+                        }
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <h1>本站只適用於中華民國台灣中二伺服器!如發現外傳將刪除本站</h1>
+        <div class="icons">
+            <label for="check_chuni" class="gameicon">
+                <img src="img/aaa_chuni.png">
+                <div>CHUNITHM</div>
+            </label>
+            <input type="checkbox" id="check_chuni" class="sectionToggle"/>
+            <div class="subsection">
+                <a href="chuni.html" class="gameicon">
+                    <img src="img/chu/ni01.png">
+                    <div>CHUNITHM</div>
+                </a>
+                <a href="chuniplus.html" class="gameicon">
+                    <img src="img/chu/ni02plus.png">
+                    <div>CHUNITHM PLUS</div>
+                </a>
+                <a href="chuniair.html" class="gameicon">
+                    <img src="img/chu/ni03air.png">
+                    <div>CHUNITHM AIR</div>
+                </a>
+                <a href="chuniairplus.html" class="gameicon">
+                    <img src="img/chu/ni04airplus.png">
+                    <div>CHUNITHM AIR PLUS</div>
+                </a>
+                <a href="chunistar.html" class="gameicon">
+                    <img src="img/chu/ni05star.png">
+                    <div>CHUNITHM STAR</div>
+                </a>
+                <a href="chunistarplus.html" class="gameicon">
+                    <img src="img/chu/ni06starplus.png">
+                    <div>CHUNITHM STAR PLUS</div>
+                </a>
+                <a href="chuniamazon.html" class="gameicon">
+                    <img src="img/chu/ni07amazon.png">
+                    <div>CHUNITHM AMAZON</div>
+                </a>
+                <a href="chuniamazonplus.html" class="gameicon">
+                    <img src="img/chu/ni08amazonplus.png">
+                    <div>CHUNITHM AMAZON PLUS</div>
+                </a>
+                <a href="chunicrystal.html" class="gameicon">
+                    <img src="img/chu/ni09crystal.png">
+                    <div>CHUNITHM CRYSTAL</div>
+                </a>
+                <a href="chunicrystalplus.html" class="gameicon">
+                    <img src="img/chu/ni10crystalplus.png">
+                    <div>CHUNITHM CRYSTAL PLUS</div>
+                </a>
+                <a href="chuniparadise.html" class="gameicon">
+                    <div class="image-wrapper">
+                        <img src="img/chu/ni11paradise.png" class="image">
+                        <img src="img/chu/ni11paradiselost.png" class="image-hover">
+                    </div>
+                    <div>CHUNITHM PARADISE (LOST)</div>
+                </a>
+                <a href="chusan.html" class="gameicon">
+                    <img src="img/chu/san12.png">
+                    <div>CHUNITHM NEW!!</div>
+                </a>
+                <a href="chusannewplus.html" class="gameicon">
+                    <img src="img/chu/san13newplus.png">
+                    <div>CHUNITHM NEW PLUS!!</div>
+                </a>
+                <a href="chusansun.html" class="gameicon">
+                    <img src="img/chu/san14sun.png">
+                    <div>CHUNITHM SUN</div>
+                </a>
+                <a href="chusansunplus.html" class="gameicon">
+                    <img src="img/chu/san15sunplus.png">
+                    <div>CHUNITHM SUN PLUS</div>
+                </a>
+                </a>
+                <a href="chuilum.html" class="gameicon">
+                    <img src="img/chu/chuilum.png">
+                    <div>CHUNITHM LUMINOUS</div>
+                </a>
+            </div>
+            </a>
+        </div>
+    </body>
+</html>
