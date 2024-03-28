@@ -2,15 +2,261 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>請發我 CHUNITHM LUMINOUS 謝謝</title>
+        <title>CHUNITHM LUMINOUS Modder</title>
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="js/dllpatcher.js"></script>
         <script type="text/javascript">
             window.addEventListener("load", function () {
             new PatchContainer([
-        </script>
-    </head>
-    <body>
-        <h1>請發我 CHUNITHM LUMINOUS 謝謝</h1>
+
+            // 1.00
+            new Patcher("chusanApp.exe", "2.20.00", [
+                    {
+                        name: "禁用商店關閉鎖定",
+                        tooltip: "停用 ~12-8am 鎖定。 不禁用日本標準時間上午 6:30-7 點之間的維護鎖定",
+                        patches: [
+                            { offset: 0xBED463, off: [0x74], on: [0xEB] },
+                        ],
+                    },
+                    {
+                        name: "強制共享音訊模式，系統音訊取樣率必須為48000",
+                        tooltip: "提高相容性，但可能會增加延遲",
+                        patches: [
+                            { offset: 0xF0E9CA, off: [0x01], on: [0x00] },
+                        ],
+                    },
+                    {
+                        name: "強制2通道音訊輸出",
+                        patches: [
+                            { offset: 0xF0EAA1, off: [0x75, 0x3F], on: [0x90, 0x90] },
+                        ],
+                    },
+                    {
+                        name: "停用歌曲選擇計時器",
+                        patches: [
+                            { offset: 0x9EF49B, off: [0x74], on: [0xEB] },
+                        ],
+                    },
+                    {
+                        name: "將所有計時器設定為 999",
+                        tooltip: "如果你的服有線上對戰,請勿打此補丁",
+                        patches: [
+                            {
+                                offset: 0x870320,
+                                off: [0x8b, 0x44, 0x24, 0x04, 0x69, 0xc0, 0xe8, 0x03, 0x00, 0x00],
+                                on: [0xb8, 0x58, 0x3e, 0x0f, 0x00, 0x90, 0x90, 0x90, 0x90, 0x90],
+                            },
+                        ],
+                    },
+                    {
+                        name: "無加密",
+                        tooltip: "停用 TLS",
+                        patches: [
+                            { offset: 0x1DC27E0, off: [0xDC], on: [0x00] },
+                            { offset: 0x1DC27E4, off: [0xDC], on: [0x00] },
+                        ]
+                    },
+                    {
+                        name: "無 TLS",
+                        tooltip: "Title server 掛了請補這個",
+                        patches: [
+                            { offset: 0xEF1A37, off: [0x80], on: [0x00] },
+                        ]
+                    },
+                    {
+                        name: "面對面比賽的補丁",
+                        tooltip: "修復嘗試連接頭對頭遊戲時無限同步的問題",
+                        patches: [
+                        { offset: 0x64BD33, off: [0x01], on: [0x00] },
+                        ],
+                    },
+                    {
+                        name: "忽略 amdaemon 的一些錯誤",
+                        danger: "[已棄用] 可能會緩解一些錯誤，例如錯誤 6401，但也可能在其他地方引起問題。",
+                        patches: [{ offset: 0x37DAEB, off: [0x75], on: [0xEB] },
+                        ],
+                    },
+                    {
+                        name: "禁用 1080p 檢查",
+                        patches: [
+                            { offset: 0x1CCBF, off: [0x81, 0xBC, 0x24, 0xB8, 0x02, 0x00, 0x00, 0x80, 0x07, 0x00, 0x00, 0x75, 0x1F, 0x81, 0xBC, 0x24, 0xBC, 0x02, 0x00, 0x00, 0x38, 0x04, 0x00, 0x00, 0x75, 0x12], on: [0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90] },
+                        ],
+                    },
+                    {
+                        name: "無限最大曲目數",
+                        tooltip: "您必須檢查播放超過 7 首曲目。",
+                        patches: [
+                            {offset: 0x7166D7, off: [0xF0], on: [0xC0]},
+                        ],
+                    },
+                    {
+                        type : "n最大曲數",
+                        name : "那你倒是設定阿!",
+                        offset : 0x397EB1,
+                        size : 4,
+                        min : 3,
+                        max : 12,
+                    },
+                    {
+                        name: "繞過 LED 板檢查",
+                        danger: "[DEPRECATED] Forces LED board check to good and auto continues",
+                        patches: [
+                            { offset: 0x9C043A, off: [0x01], on: [0x00] },
+                            { offset: 0x9C043F, off: [0x00], on: [0x01] },
+                        ],
+                    },
+                    {
+                        name: "強制120hz檢查",
+                        tooltip: "檢查以確保 120hz 檢查始終通過（不要將其與 CVT 模式補丁一起使用）",
+                        patches: [
+                            { offset: 0x1CCB1, off: [0x85, 0xC0], on: [0xEB, 0x30] },
+                        ],
+                    },
+                ]),
+                new Patcher("chusanApp.exe", "2.20.00 - 1CC", [
+                    {
+                        name: "模擬螢幕",
+                        tooltip: "讓螢幕監控檢查始終透過",
+                        patches: [
+                            {
+                                offset: 0x1d8b1,
+                                off: [0x85, 0xc0, 0x74, 0x3f],
+                                on: [0xeb, 0x30, 0xeb, 0x2e],
+                            },
+                            {
+                                offset: 0x1d8bf,
+                                off: [
+                                    0x81, 0xbc, 0x24, 0xb8, 0x02, 0x00, 0x00, 0x80, 0x07, 0x00,
+                                    0x00, 0x75, 0x1f,
+                                ],
+                                on: [
+                                    0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+                                    0x90, 0x90, 0x90,
+                                ],
+                            },
+                            {
+                                offset: 0x1d8cc,
+                                off: [
+                                    0x81, 0xbc, 0x24, 0xbc, 0x02, 0x00, 0x00, 0x38, 0x04, 0x00,
+                                    0x00, 0x75, 0x12,
+                                ],
+                                on: [
+                                    0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+                                    0x90, 0x90, 0x90,
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        name: "模擬 LED",
+                        tooltip: "強制 LED 板檢查通過並自動繼續",
+                        patches: [
+                            { offset: 0x9c103a, off: [0x01], on: [0x00] },
+                            { offset: 0x9c103f, off: [0x00], on: [0x01] },
+                        ],
+                    },
+                    {
+                        name: "無加密和 TLS",
+                        tooltip: "處理Title server bad",
+                        patches: [
+                            { offset: 0x1dcc5e0, off: [0xdc], on: [0x00] },
+                            { offset: 0x1dcc5e4, off: [0xdc], on: [0x00] },
+                        ],
+                    },
+                    {
+                        name: "強制共享音訊模式，系統音訊取樣率必須為48000",
+                        tooltip: "提高相容性，但可能會增加延遲",
+                        patches: [{ offset: 0xf0f5ca, off: [0x01], on: [0x00] }],
+                    },
+                    {
+                        name: "強制2聲道音訊輸出",
+                        tooltip: "可能會導致音訊低音過載",
+                        patches: [
+                            { offset: 0xf0f6a1, off: [0x75, 0x3f], on: [0x90, 0x90] },
+                        ],
+                    },
+                    {
+                        name: "禁用商店關閉鎖定",
+                        tooltip:
+                            "停用 ~12-8am 鎖定。 不禁用日本標準時間上午 6:30-7 點之間的維護鎖定",
+                        patches: [{ offset: 0xbee063, off: [0x74], on: [0xeb] }],
+                    },
+                    {
+                        name: "停用歌曲選擇計時器",
+                        tooltip: "停用歌曲選擇計時器",
+                        patches: [{ offset: 0x9f009b, off: [0x74], on: [0xeb] }],
+                    },
+                    {
+                        name: "將所有計時器設定為 999",
+                        tooltip:
+                            "將所有計時器設定為 999",
+                        patches: [
+                            {
+                                offset: 0x870f20,
+                                off: [
+                                    0x8b, 0x44, 0x24, 0x04, 0x69, 0xc0, 0xe8, 0x03, 0x00, 0x00,
+                                ],
+                                on: [
+                                    0xb8, 0x58, 0x3e, 0x0f, 0x00, 0x90, 0x90, 0x90, 0x90, 0x90,
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        name: "面對面比賽的補丁",
+                        tooltip:
+                            "就C TO C",
+                        patches: [{ offset: 0x64c933, off: [0x01], on: [0x00] }],
+                    },
+                    {
+                        name: "忽略 AMDaemon 異常返回",
+                        tooltip: "忽略一些錯誤，例如 6401",
+                        patches: [{ offset: 0x37e6eb, off: [0x75], on: [0xeb] }],
+                    },
+                    {
+                        name: "無限曲數",
+                        tooltip: "補丁到7曲以上",
+                        patches: [{ offset: 0x7172d7, off: [0xf0], on: [0xc0] }],
+                    },
+                    {
+                        type: "最大曲數",
+                        name: "就..曲數",
+                        offset: 0x398ab1,
+                        size: 4,
+                        min: 3,
+                        max: 12,
+                    },
+                ]),
+            ])
+            new PatchContainer([
+                new Patcher("amdaemon.exe", "2.20.00", [
+                    {
+                        name: "將錯誤 6401 替換為無錯誤",
+                        tooltip: "將錯誤 6401 的所有實例設定為 0",
+                        patches: [
+                            { offset: 0x2220F6, off: [0x01, 0x19], on: [0x00, 0x00] },
+                            { offset: 0x22229E, off: [0x01, 0x19], on: [0x00, 0x00] },
+                            { offset: 0x222C87, off: [0x01, 0x19], on: [0x00, 0x00] },
+                        ],
+                    },
+                ]),
+                new Patcher("amdaemon.exe", "2.20.00 - 1CC", [
+                    {
+                        name: "將錯誤 6401 替換為無錯誤",
+                        tooltip: "將錯誤 6401 的所有實例設定為 0",
+                        patches: [
+                            { offset: 0x232CE6, off: [0x01, 0x19], on: [0x00, 0x00] },
+                            { offset: 0x232E8E, off: [0x01, 0x19], on: [0x00, 0x00] },
+                            { offset: 0x233877, off: [0x01, 0x19], on: [0x00, 0x00] },
+                        ],
+                    },
+                ]),
+            ])
+        });
+    </script>
+</head>
+
+<body>
+    <h1>CHUNITHM LUMINOUS Modder</h1>
     </body>
 </html>
