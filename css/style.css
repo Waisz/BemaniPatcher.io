@@ -1,3 +1,30 @@
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Ensure it stays behind other content */
+}
+
+/* Styles for the video element */
+#bgVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: 50%;
+    height: 50;
+    z-index: -1;
+}
+        <div class="video-container">
+            <video autoplay muted loop id="bgVideo">
+                <source src="./bg/Luminous.mp4" type="video/mp4">
+            </video>
+        </div>
+
 @font-face {
   font-family: 'file';
   src:  url('file.eot?abyff3');
@@ -8,6 +35,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 .tagline {
     font-family: monospace;
 }
@@ -79,7 +107,7 @@ input:checked.sectionToggle + div {
     margin-top: 5px;
 }
 
-.gameicon>div {
+.gameicon > div {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -102,9 +130,9 @@ input:checked.sectionToggle + div {
     color: DarkGreen;
 }
 
-.success.hidden {
-    display: none;
-}
+    .success.hidden {
+        display: none;
+    }
 
 .patchContainer {
     background-color: white;
@@ -126,49 +154,49 @@ input:checked.sectionToggle + div {
     cursor: pointer;
 }
 
-.tooltip:hover,
-.tooltip:focus,
-.tooltip:active {
-    visibility: visible;
-    color: white;
-    border: none;
-    margin-top: 0px;
-    position: absolute;
-    padding: 3px 16px;
-    white-space: normal;
-    max-width: 300px;
-    z-index: 11;
-}
+    .tooltip:hover,
+    .tooltip:focus,
+    .tooltip:active {
+        visibility: visible;
+        color: white;
+        border: none;
+        margin-top: 0px;
+        position: absolute;
+        padding: 3px 16px;
+        white-space: normal;
+        max-width: 300px;
+        z-index: 11;
+    }
 
-.tooltip:before {
-    visibility: visible;
-    content: '?';
-    font-size: 18px;
-    margin-right: 8px;
-    background: gray;
-    border-radius: 50%;
-    padding: 2px 9px;
-    margin-left: -8px;
-    color: white;
-    cursor: pointer;
-    z-index: 10;
-}
+    .tooltip:before {
+        visibility: visible;
+        content: '?';
+        font-size: 18px;
+        margin-right: 8px;
+        background: gray;
+        border-radius: 50%;
+        padding: 2px 9px;
+        margin-left: -8px;
+        color: white;
+        cursor: pointer;
+        z-index: 10;
+    }
 
-.tooltip:hover:before,
-.tooltip:focus:before,
-.tooltip:active:before {
-    color: black;
-    display: none;
-}
+    .tooltip:hover:before,
+    .tooltip:focus:before,
+    .tooltip:active:before {
+        color: black;
+        display: none;
+    }
 
 .danger {
     background: #ff6000 !important;
 }
 
-.danger:before {
-    content: '!!';
-    background: #ff6000;
-}
+    .danger:before {
+        content: '!!';
+        background: #ff6000;
+    }
 
 body {
     margin: 40px auto;
@@ -194,13 +222,14 @@ h5 {
 }
 
 h1 {
+	color: #fff;
     text-align: center;
 }
 
-h1 a {
-    color: inherit;
-    text-decoration: inherit;
-}
+    h1 a {
+        color: inherit;
+        text-decoration: inherit;
+    }
 
 button, .fileLabel > strong {
     transition-duration: 0.2s;
@@ -223,17 +252,17 @@ button, .fileLabel > strong {
     cursor: pointer;
 }
 
-button:disabled {
-    background-color: rgba(0, 0, 0, 0.12);
-    color: rgba(0, 0, 0, 0.38);
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
-    cursor: default;
-}
+    button:disabled {
+        background-color: rgba(0, 0, 0, 0.12);
+        color: rgba(0, 0, 0, 0.38);
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+        cursor: default;
+    }
 
-button:hover:enabled, .fileLabel > strong:hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25), 0px 0px 4px rgba(0, 0, 0, 0.125);
-    background-color: #5dbe3c;
-}
+    button:hover:enabled, .fileLabel > strong:hover {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25), 0px 0px 4px rgba(0, 0, 0, 0.125);
+        background-color: #5dbe3c;
+    }
 
 .matchPercent {
     font-size: 15px;
@@ -272,7 +301,7 @@ input[type=radio] {
     margin-left: 4px;
 }
 
-.dragover>* {
+.dragover > * {
     filter: blur(5px);
 }
 
@@ -301,7 +330,6 @@ input[type=radio] {
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
     display: block;
     height: auto;
     position: absolute;
@@ -331,66 +359,66 @@ input[type=radio] {
     cursor: pointer;
     display: inline-block;
 }
+
 .patchPreviewLabel {
     cursor: pointer;
 }
+
 .patchPreviewToggle {
     display: none;
 }
+
 .patchPreview {
     display: none;
 }
+
 input[type=checkbox]:checked + .patchPreview {
     display: block;
 }
+
 input[type=checkbox] ~ ul > li.patch-off {
     display: none;
 }
+
 input[type=checkbox] ~ ul > li.patch-on {
     display: list-item;
 }
+
 input[type=checkbox]:checked ~ ul > li.patch-on {
     display: none;
 }
+
 input[type=checkbox]:checked ~ ul > li.patch-off {
     display: list-item;
 }
-@media (prefers-color-scheme: dark) {
-  body {
+
+
+body {
     background: #1d1e1f;
-	color: #fff;
-  }
-  .gameicon, .patchContainer {
-		background-color: #2e2e2e;
-  }
-  label.gameicon {
-	  background: #303025;
-  }
-  .subsection {
+    color: #fff;
+}
+
+.gameicon, .patchContainer {
+    background-color: #2e2e2e;
+}
+
+label.gameicon {
+    background: #303025;
+}
+
+.subsection {
     background-color: #464646;
-  }
-  .success {
+}
+
+.success {
     color: green;
-  }
 }
-@media (prefers-color-scheme: light) {
-  body {
-    background: #e2e1e0;
-	color: #000;
-  }
-  .gameicon, .patchContainer {
-		background-color: white;
-  }
-  label.gameicon {
-	  background: #fffcf0;
-  }
-  .subsection {
-    background-color: #a2a2a2;
-  }
-}
+
+
 .image-wrapper {
     position: relative;
 }
+
 .image-hover {
     position: absolute;
     top: 0;
@@ -398,6 +426,7 @@ input[type=checkbox]:checked ~ ul > li.patch-off {
     opacity: 0;
     transition: opacity 0.5s ease-out;
 }
-.image-hover:hover {
-    opacity: 1;
-}
+
+    .image-hover:hover {
+        opacity: 1;
+    }
