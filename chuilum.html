@@ -57,6 +57,18 @@
                         ]
                     },
                     {
+                        name: "CVT模式",
+                        tooltip: "如使用120hz請關閉他",
+                        patches: [
+                            {offset: 0x1CD04, off: [0x01], on: [0x00]},
+                            {offset: 0x1CD3B, off: [0x01], on: [0x00]},
+
+                            {offset: 0x37B69B, off: [0x75], on: [0xEB]},
+                            {offset: 0x37D00E, off: [0x84, 0xC0, 0x0F, 0x94, 0xC1], on: [0x90, 0x90, 0x90, 0x90, 0x90]},
+                            {offset: 0xEF1A37, off: [0x80], on: [0x00]},
+                            ]
+                    },
+                    {
                         name: "無 TLS",
                         tooltip: "Title server 掛了請補這個",
                         patches: [
@@ -154,6 +166,19 @@
                             { offset: 0x9c103a, off: [0x01], on: [0x00] },
                             { offset: 0x9c103f, off: [0x00], on: [0x01] },
                         ],
+                    },
+                    #使用可能未知
+                    {
+                        name: "CVT模式",
+                        tooltip: "如使用120hz請關閉他",
+                        patches: [
+                            {offset: 0x1CD04, off: [0x01], on: [0x00]},
+                            {offset: 0x1CD3B, off: [0x01], on: [0x00]},
+
+                            {offset: 0x37B69B, off: [0x75], on: [0xEB]},
+                            {offset: 0x37D00E, off: [0x84, 0xC0, 0x0F, 0x94, 0xC1], on: [0x90, 0x90, 0x90, 0x90, 0x90]},
+                            {offset: 0xEF1A37, off: [0x80], on: [0x00]},
+                            ]
                     },
                     {
                         name: "無加密和 TLS",
